@@ -15,8 +15,7 @@ Encompassing all different kinds of work a browser will create and execute befor
 Since most of us will attribute LoAF entries to INP attribution data, its important to mention that animation frames are not required to be preceeding or encompassing an interaction. As they are purelly measuring different types of work, and collecting timestamps of interaction events, that happened before the browser could ship the next frame.
 
 ![Visualizing an animation frame vs the different work executed during its span on https://perflab.io](animation-frame-and-stages.jpg)
-
-Visualizing an animation frame vs the different work executed during its span on https://perflab.io
+> Visualizing an animation frame vs the different work executed during its span on https://perflab.io
 
 ## Breaking down different types of work within an animation frame entry
 
@@ -54,8 +53,7 @@ The work executed at this stage runs a lot closer to the part of the animation f
 ### Thinking in terms of Animation Frames
 
 ![Screenshot taken from a trace visualized in https://perflab.io](perflab-animation-frames.jpg)
-
-Screenshot taken from a trace visualized in https://perflab.io
+> Screenshot taken from a trace visualized in https://perflab.io
 
 [Back in 2021](https://web.dev/blog/better-responsiveness-metric), in order to empower the next set of metrics and improve the attribution model, the chrome team started resarch and development around a new stardard way to measure work around user interactions. A year later INP became an experimental metric and in [March 2024 it replaced FID](https://web.dev/blog/inp-cwv-march-12)**.** Along side INP we also got [Long Animatin Frames](https://github.com/w3c/long-animation-frames) which is where we started agregating the INP phases into a new attribution data in the form of the Long Animation Frame entries exposed as [part of the Performance APIs](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing).
 
@@ -64,8 +62,7 @@ Similar to the LongTasks API, the LoAFs API exposes entries that are above the m
 However, we can also expand the concept to thinking around animation frames as a base unit of work. Enabling some exploration shown bellow on how to quickly expose possible bottlenecks within your application on a session wide scope. Instead of zooming into one singular point exposed by your INP score and attribution data.
 
 ![Showcasing INP event attribution data vs animation frame distribution and work type aggregation on https://perflab.io](inp-vs-animation-frame-w-work-type.webp)
-
-Showcasing INP event attribution data vs animation frame distribution and work type aggregation on https://perflab.io
+> Showcasing INP event attribution data vs animation frame distribution and work type aggregation on https://perflab.io
 
 Framing where different problem areas may be presented at different times over the entire session, and gathering information on what kind of work is being done to cause such bottlenecks at any given stage of work mentioned above.
 
@@ -78,8 +75,7 @@ As we have established, animation frames happen session wide. They are a unit of
 Considering that our users may also interact with our website at any given time, meaning those interactions may be initiated anytime during an animation frame. So if the event creation happens during the processing time section of an animation frame, the interaction event creation may not be followed by its event handler’s tasks during the same frame.
 
 ![A visualization of an animation frame that contains input delay taken from the [https://web.dev INP article](https://web.dev/articles/inp)](inp-image.jpg)
-
-A visualization of an animation frame that contains input delay taken from the [https://web.dev INP article](https://web.dev/articles/inp)
+> A visualization of an animation frame that contains input delay taken from the [https://web.dev INP article](https://web.dev/articles/inp)
 
 It’s important to separate the concept of an interaction and event handlers, as [one interaction may include multiple event handlers](https://web.dev/articles/inp#whats_in_an_interaction) such as `keydown`, `keypress`, and `keyup` events for a single keystroke instance. Each may need to process their own event handler’s tasks. And in some cases each event may even be processed over different animation frames, if the browser gets to present a frame to the screen between handling any callbacks for each separate event.
 
