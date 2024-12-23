@@ -12,7 +12,7 @@ This work encompasses all three phases of the INP attribution, which are: input 
 
 Encompassing all different kinds of work a browser will create and execute before shipping a frame to the screen. Sometimes the work executed within some of the frames might extend past a budget established in order to maintain a smooth experience. In which case any animation frame that extend past a 50ms budget would be considered a [long animation frame](https://developer.chrome.com/docs/web-platform/long-animation-frames), or LoAF, entry.
 
-Since most of us will attribute LoAF entries to INP attribution data, its important to mention that animation frames are not required to be preceeding or encompassing an interaction. As they are purelly measuring different types of work, and collecting timestamps of interaction events, that happened before the browser could ship the next frame.
+Since most of us will attribute LoAF entries to INP attribution data, its important to mention that animation frames are not required to be preceeding or encompassing an interaction. As they are purely measuring different types of work, and collecting timestamps of interaction events, that happened before the browser could ship the next frame.
 
 ![Visualizing an animation frame vs the different work executed during its span on https://perflab.io](animation-frame-and-stages.jpg)
 > Visualizing an animation frame vs the different work executed during its span on https://perflab.io
@@ -48,14 +48,14 @@ The last section of work before the browser can produce and ship the next frame 
 - View transition promises
 - RequestAnimationFrame callbacks
 
-The work executed at this stage runs a lot closer to the part of the animation frame that is closer to actually presenting a frame, but they also can contribute delays before the new frame can actually be presented. Since some of those APIs also spawn their own tasks and microtasks, thus the work executed at this stage can also be a source of delay.
+The work executed at this stage runs a lot closer to the part of the animation frame that is closer to actually presenting a frame, but they also can contribute delays before the new frame can actually be presented. Since some of those APIs may also spawn their microtasks, thus the work executed at this stage can also be a source of delay.
 
 ### Thinking in terms of Animation Frames
 
 ![Screenshot taken from a trace visualized in https://perflab.io](perflab-animation-frames.jpg)
 > Screenshot taken from a trace visualized in https://perflab.io
 
-[Back in 2021](https://web.dev/blog/better-responsiveness-metric), in order to empower the next set of metrics and improve the attribution model, the chrome team started resarch and development around a new stardard way to measure work around user interactions. A year later INP became an experimental metric and in [March 2024 it replaced FID](https://web.dev/blog/inp-cwv-march-12)**.** Along side INP we also got [Long Animatin Frames](https://github.com/w3c/long-animation-frames) which is where we started agregating the INP phases into a new attribution data in the form of the Long Animation Frame entries exposed as [part of the Performance APIs](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing).
+[Back in 2021](https://web.dev/blog/better-responsiveness-metric), in order to empower the next set of metrics and improve the attribution model, the chrome team started resarch and development around a new stardard way to measure work around user interactions. A year later INP became an experimental metric and in [March 2024 it replaced FID](https://web.dev/blog/inp-cwv-march-12)**.** Along side INP we also got [Long Animatin Frames](https://github.com/w3c/long-animation-frames) which is where we started aggregating the INP phases into a new attribution data in the form of the Long Animation Frame entries exposed as [part of the Performance APIs](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing).
 
 Similar to the LongTasks API, the LoAFs API exposes entries that are above the mentioned 50ms threshold. Allowing developers to focus on collecting data that may point to bottlenecks around their applications.
 
